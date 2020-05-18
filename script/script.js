@@ -285,5 +285,44 @@ window.addEventListener('DOMContentLoaded', () => {
 
     slider();
 
+    // замена фото по наведению мыши
+    const changePhotos = () => {
+        const commandPhotos = document.querySelectorAll('.command__photo');
+
+        commandPhotos.forEach((item) => {
+
+            const prevImg = item.getAttribute('src');
+
+            item.addEventListener('mouseenter', (event) => {
+                const target = event.target;
+
+                target.src = target.dataset.img
+            });
+
+            item.addEventListener('mouseleave', (event) => {
+                const target = event.target;
+                
+                target.src = prevImg;
+            });
+        
+
+        });
+    }
+
+    changePhotos();
+
+    const numberInput = () => {
+        const calcItem = document.querySelectorAll('.calc-item'),
+            calcBlock = document.querySelector('.calc-block');
+        
+        calcBlock.addEventListener('input', () => {
+            calcItem.forEach((item) => {
+                item.value = item.value.replace(/[^0-9]+$/g, '');
+            });
+        });
+    
+    }
+
+    numberInput();
 
 });
